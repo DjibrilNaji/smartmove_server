@@ -108,7 +108,7 @@ exports.seed = async function (knex) {
       price: 300.14,
       motif: "J'ai besoin de repos",
       date: new Date("2024-01-17"),
-      status: "Validé",
+      status: "Validée",
     },
   ];
 
