@@ -16,7 +16,6 @@ module.exports.up = async (knex) => {
     table.text("status").notNullable();
     table
       .text("matricule")
-      .primary()
       .notNullable()
       .references("matricule")
       .inTable("users");
