@@ -5,6 +5,7 @@ exports.seed = async function (knex) {
   await knex.raw('TRUNCATE TABLE "hotels" RESTART IDENTITY CASCADE');
   await knex.raw('TRUNCATE TABLE "hotelReservations" RESTART IDENTITY CASCADE');
   await knex.raw('TRUNCATE TABLE "reservations" RESTART IDENTITY CASCADE');
+  await knex.raw('TRUNCATE TABLE "requests" RESTART IDENTITY CASCADE'); // Ajout de la ligne pour "requests"
 
   const users = [
     { userName: "Jonhy", firstName: "John", lastName: "Doe", matricule: "123456" },
@@ -51,4 +52,11 @@ exports.seed = async function (knex) {
   ];
 
   await knex("reservations").insert(reservations);
+
+  const requests = [
+    { matricule: "123456", secretCode: "abc123" },
+    { matricule: "789012", secretCode: "xyz789" },
+  ];
+
+  await knex("requests").insert(requests);
 };

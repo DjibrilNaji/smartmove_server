@@ -8,10 +8,8 @@ module.exports.up = async (knex) => {
   });
 
   await knex.schema.createTable("requests", (table) => {
-    table.text("matricule").notNullable();
     table.text("secretCode").notNullable();
-
-    table.text("userId").notNullable().references("matricule").inTable("users");
+    table.text("matricule").notNullable().references("matricule").inTable("users");
     
     table.primary(["matricule", "secretCode"]);
     table.timestamps(true, true, true);
@@ -61,11 +59,11 @@ module.exports.up = async (knex) => {
 };
 
 module.exports.down = async (knex) => {
-  await knex.schema.dropTable("users");
-  await knex.schema.dropTable("requests");
-  await knex.schema.dropTable("stations");
-  await knex.schema.dropTable("voyages");
-  await knex.schema.dropTable("hotels");
-  await knex.schema.dropTable("hotelReservations");
   await knex.schema.dropTable("reservations");
+  await knex.schema.dropTable("hotelReservations");
+  await knex.schema.dropTable("hotels");
+  await knex.schema.dropTable("voyages");
+  await knex.schema.dropTable("stations");
+  await knex.schema.dropTable("requests");
+  await knex.schema.dropTable("users");
 };
