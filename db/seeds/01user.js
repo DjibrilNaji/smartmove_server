@@ -8,11 +8,41 @@ exports.seed = async function (knex) {
   await knex.raw('TRUNCATE TABLE "requests" RESTART IDENTITY CASCADE'); // Ajout de la ligne pour "requests"
 
   const users = [
-    { userName: "Jonhy", firstName: "John", lastName: "Doe", matricule: "123456" },
-    { userName: "Janou", firstName: "Jane", lastName: "Smith", matricule: "789012" },
-    { userName: "Aliçou", firstName: "Alice", lastName: "Johnson", matricule: "567890" },
-    { userName: "Bobby", firstName: "Bob", lastName: "Miller", matricule: "345678" },
-    { userName: "Emmou", firstName: "Emma", lastName: "Watson", matricule: "901234" },
+    {
+      userName: "Jonhy",
+      firstName: "John",
+      lastName: "Doe",
+      matricule: "123456",
+      secretCode: "abc123",
+    },
+    {
+      userName: "Janou",
+      firstName: "Jane",
+      lastName: "Smith",
+      matricule: "789012",
+      secretCode: "abc456",
+    },
+    {
+      userName: "Aliçou",
+      firstName: "Alice",
+      lastName: "Johnson",
+      matricule: "567890",
+      secretCode: "abc789",
+    },
+    {
+      userName: "Bobby",
+      firstName: "Bob",
+      lastName: "Miller",
+      matricule: "345678",
+      secretCode: "xyz789",
+    },
+    {
+      userName: "Emmou",
+      firstName: "Emma",
+      lastName: "Watson",
+      matricule: "901234",
+      secretCode: "xyz123",
+    },
   ];
 
   await knex("users").insert(users);
@@ -47,15 +77,39 @@ exports.seed = async function (knex) {
   await knex("hotelReservations").insert(hotelReservations);
 
   const reservations = [
-    { matriculeUser: "123456", matriculeManager: "789012", outboundVoyageId: 1, returnVoyageId: 2, hotelResId: 1 },
-    { matriculeUser: "567890", matriculeManager: "345678", outboundVoyageId: 2, returnVoyageId: 1, hotelResId: 2 },
+    {
+      matriculeUser: "123456",
+      matriculeManager: "789012",
+      outboundVoyageId: 1,
+      returnVoyageId: 2,
+      hotelResId: 1,
+    },
+    {
+      matriculeUser: "567890",
+      matriculeManager: "345678",
+      outboundVoyageId: 2,
+      returnVoyageId: 1,
+      hotelResId: 2,
+    },
   ];
 
   await knex("reservations").insert(reservations);
 
   const requests = [
-    { matricule: "123456", secretCode: "abc123" },
-    { matricule: "789012", secretCode: "xyz789" },
+    {
+      matricule: "123456",
+      price: 142.2,
+      motif: "J'ai besoin de vacances",
+      date: new Date("2024-01-20"),
+      status: "En attente",
+    },
+    {
+      matricule: "789012",
+      price: 300.14,
+      motif: "J'ai besoin de repos",
+      date: new Date("2024-01-17"),
+      status: "Validé",
+    },
   ];
 
   await knex("requests").insert(requests);
