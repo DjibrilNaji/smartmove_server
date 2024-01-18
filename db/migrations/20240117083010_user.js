@@ -5,6 +5,7 @@ module.exports.up = async (knex) => {
     table.text("userName").notNullable();
     table.text("firstName").notNullable();
     table.text("lastName").notNullable();
+    table.text("email").notNullable();
     table.timestamps(true, true, true);
   });
 
