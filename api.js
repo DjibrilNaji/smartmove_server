@@ -12,6 +12,7 @@ const knex = require("knex")({
 });
 const bodyParser = require("body-parser");
 
+// Configuration Express
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -19,9 +20,47 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = 3030;
 
+// Configuration Nodemailer
+const nodemailer = require('nodemailer');
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'smartmoverapidcrafter@gmail.com',
+    pass: 'ydhi jlyy xsht ttru',
+  },
+});
+
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}. Ready to accept requests!`);
 });
+
+app.post("/confirmation", async (req, res) => {
+  try {
+    const { matricule } = req.body;
+
+    const user = await knex("users").where("matricule", matricule).first();
+
+    const mailOptions = {
+        from: 'smartmoverapidcrafter@gmail.com',
+        to: user.email,
+        subject: "Confirmation de la demande",
+        text: "Votre demande de remboursement a bien été prise en compte"
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(mailOptions);
+            return res.status(500).send(error.message);
+        }
+        res.status(200).send(`E-mail de confirmation envoyé à ${user.email} : ${info.messageId}`);
+    });
+
+  } catch (error) {
+    console.error("Error retrieving request:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 app.post("/requests", async (req, res) => {
   try {
