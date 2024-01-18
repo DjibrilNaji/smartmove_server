@@ -45,7 +45,7 @@ app.post("/requests", async (req, res) => {
       return res.status(404).json({ error: "Requests not found." });
     }
 
-    res.status(200).json(request);
+    res.status(200).send({ requests: request, firstName: user.firstName });
   } catch (error) {
     console.error("Error retrieving request:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
