@@ -36,11 +36,13 @@ app.listen(port, () => {
 
 app.post("/confirmation", async (req, res) => {
   try {
-    // const { matricule } = req.body; -> destination à chercher en fonction de matricule
+    const { matricule } = req.body;
+
+    const user = await knex("users").where("matricule", matricule).first();
 
     const mailOptions = {
         from: 'smartmoverapidcrafter@gmail.com',
-        to: "adam.mehdaouijorge@gmail.com", // -> destination à chercher en fonction de matricule
+        to: user.email,
         subject: "Confirmation de la demande",
         text: "Votre demande de remboursement a bien été prise en compte"
     };
@@ -50,7 +52,7 @@ app.post("/confirmation", async (req, res) => {
             console.log(mailOptions);
             return res.status(500).send(error.message);
         }
-        res.status(200).send('E-mail envoyé : ' + info.messageId);
+        res.status(200).send(`E-mail de confirmation envoyé à ${user.email} : ${info.messageId}`);
     });
 
   } catch (error) {
