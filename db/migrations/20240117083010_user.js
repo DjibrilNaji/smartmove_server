@@ -6,6 +6,7 @@ module.exports.up = async (knex) => {
     table.text("firstName").notNullable();
     table.text("lastName").notNullable();
     table.text("email").notNullable();
+    table.boolean("isManager").notNullable();
     table.timestamps(true, true, true);
   });
 

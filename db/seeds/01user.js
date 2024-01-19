@@ -14,7 +14,8 @@ exports.seed = async function (knex) {
       lastName: "Doe",
       matricule: "123456",
       secretCode: "abc123",
-      email: "johnylebeaugosse@gmail.com"
+      email: "johnylebeaugosse@gmail.com",
+      isManager: true,
     },
     {
       userName: "Janou",
@@ -22,7 +23,8 @@ exports.seed = async function (knex) {
       lastName: "Smith",
       matricule: "789012",
       secretCode: "abc456",
-      email: "janoulabellegosse@gmail.com"
+      email: "janoulabellegosse@gmail.com",
+      isManager: true,
     },
     {
       userName: "Aliçou",
@@ -30,7 +32,8 @@ exports.seed = async function (knex) {
       lastName: "Johnson",
       matricule: "567890",
       secretCode: "abc789",
-      email: "alicetupues@gmail.com"
+      email: "alicetupues@gmail.com",
+      isManager: false,
     },
     {
       userName: "Bobby",
@@ -38,7 +41,8 @@ exports.seed = async function (knex) {
       lastName: "Miller",
       matricule: "345678",
       secretCode: "xyz789",
-      email: "bobby94@gmail.com"
+      email: "bobby94@gmail.com",
+      isManager: false,
     },
     {
       userName: "Emmou",
@@ -46,7 +50,8 @@ exports.seed = async function (knex) {
       lastName: "Watson",
       matricule: "901234",
       secretCode: "xyz123",
-      email: "emmoueheheh@gmail.com"
+      email: "emmoueheheh@gmail.com",
+      isManager: false,
     },
     {
       userName: "Djib",
@@ -54,7 +59,8 @@ exports.seed = async function (knex) {
       lastName: "Naji",
       matricule: "903044",
       secretCode: "bar321",
-      email: "najidjibril.supdevinci@gmail.com"
+      email: "najidjibril.supdevinci@gmail.com",
+      isManager: false,
     },
     {
       userName: "noborder",
@@ -62,7 +68,8 @@ exports.seed = async function (knex) {
       lastName: "Mehdaoui",
       matricule: "010101",
       secretCode: "ada000",
-      email: "adam.mehdaouijorge@gmail.com"
+      email: "adam.mehdaouijorge@gmail.com",
+      isManager: false,
     },
   ];
 

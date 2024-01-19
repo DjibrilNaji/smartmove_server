@@ -56,7 +56,14 @@ app.post("/requests", async (req, res) => {
       return res.status(404).json({ error: "Requests not found." });
     }
 
-    res.status(200).send({ requests: request, firstName: user.firstName });
+    res.status(200).send({
+      requests: request,
+      user: {
+        firstName: user.firstName,
+        matricule: user.matricule,
+        isManager: user.isManager,
+      },
+    });
   } catch (error) {
     console.error("Error retrieving request:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
@@ -110,4 +117,26 @@ app.post("/request", async (req, res) => {
     console.error("Error retrieving request:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+app.patch("/request", async (req, res) => {
+  const { matricule, idRequest, validateStatus } = req.body;
+
+  if (!matricule || !idRequest || !validateStatus) {
+    return res.status(400).json({
+      error: "Invalid data.",
+    });
+  }
+
+  const user = await knex("users").where("matricule", matricule).first();
+
+  if (!user || user.isManager === false) {
+    return res.status(401).json({ error: "Invalid credentials." });
+  }
+
+  await knex("requests")
+    .update("status", validateStatus)
+    .where("id", idRequest);
+
+  res.status(200).json({ message: "Request updated successfully." });
 });
