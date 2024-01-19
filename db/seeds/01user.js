@@ -57,10 +57,10 @@ exports.seed = async function (knex) {
       userName: "Djib",
       firstName: "Djibril",
       lastName: "Naji",
-      matricule: "903044",
-      secretCode: "bar321",
+      matricule: "111111",
+      secretCode: "admin123",
       email: "najidjibril.supdevinci@gmail.com",
-      isManager: false,
+      isManager: true,
     },
     {
       userName: "noborder",
@@ -125,7 +125,7 @@ exports.seed = async function (knex) {
 
   const requests = [
     {
-      matricule: "123456",
+      matricule: "111111",
       price: 142.2,
       motif: "J'ai besoin de vacances",
       date: new Date("2024-01-20"),

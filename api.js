@@ -50,7 +50,7 @@ app.post("/requests", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials." });
     }
 
-    const request = await knex("requests").where({ matricule });
+    const request = await knex("requests").where({ matricule }).orderBy("id");
 
     if (!request) {
       return res.status(404).json({ error: "Requests not found." });
